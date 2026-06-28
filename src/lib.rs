@@ -14,6 +14,9 @@ pub mod windowing;
 /// All the stuff you'd need from the lib usually
 pub mod prelude;
 
+/// A simple texture manager to dynamically load/unload images
+pub mod texture_manager;
+
 // Windows
 #[cfg(not(target_arch = "wasm32"))]
 #[cfg(feature = "glfw")]

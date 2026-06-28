@@ -14,7 +14,14 @@ default = ["std"]
 # Core
 std = []
 _checking = ["all", "cursor_show_hotspot"]
-all = ["glfw", "minifb", "console", "all_codecs", "all_enum_extensions"]
+all = [
+    "glfw",
+    "minifb",
+    "console",
+    "all_codecs",
+    "all_enum_extensions",
+    "image_support",
+]
 
 # Does nothing by itself. Needs another codec or enum flag to do something
 mirl_derive = ["dep:mirl_derive"]
@@ -48,8 +55,11 @@ console = ["mirl_windowing_console"]
 
 cursor_show_hotspot = ["mirl_windowing_core/cursor_show_hotspot"]
 
+image_support = ["dep:image"]
+
 [dependencies]
 mirl_windowing_core = { version = "0.0.0-alpha" }
+mirl_buffer = { version = "0.0.0-alpha" }
 mirl_derive = { version = "0.0.0-alpha", optional = true }
 # Codec
 compactly = { version = "0.1.6", optional = true }
@@ -70,6 +80,9 @@ strum = { version = ">=0.28", optional = true, default-features = false, feature
     "derive",
 ] }
 enum_ext = { version = "0.6.0", optional = true, default-features = false }
+
+
+image = { version = ">=0.25.9", optional = true, default-features = false }
 
 # Normal
 mirl_extensions = { version = "0.0.0-alpha" }

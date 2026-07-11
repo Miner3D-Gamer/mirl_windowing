@@ -22,7 +22,6 @@ all = [
     "all_enum_extensions",
     "image_support",
 ]
-
 # Does nothing by itself. Needs another codec or enum flag to do something
 mirl_derive = ["dep:mirl_derive"]
 # Compatibility with ffi
@@ -31,18 +30,15 @@ c_compatible = ["mirl_derive"]
 all_codecs = ["serde", "bitcode", "wincode", "compactly", "zerocopy"]
 # All enum extensions
 all_enum_extensions = ["strum", "enum_ext"]
-
 # Codec stuff
 serde = ["dep:serde", "mirl_derive", "mirl_windowing_core/serde"]
 bitcode = ["dep:bitcode", "mirl_derive", "mirl_windowing_core/bitcode"]
 wincode = ["dep:wincode", "mirl_derive", "mirl_windowing_core/wincode"]
 compactly = ["dep:compactly", "mirl_derive", "mirl_windowing_core/compactly"]
 zerocopy = ["dep:zerocopy", "mirl_derive", "mirl_windowing_core/zerocopy"]
-
 # Enum extensions
 strum = ["dep:strum", "mirl_derive", "mirl_windowing_core/strum"]
 enum_ext = ["dep:enum_ext", "mirl_derive", "mirl_windowing_core/enum_ext"]
-
 # Frameworks
 ## Framework backend using minifb
 minifb = ["mirl_windowing_minifb"]
@@ -51,9 +47,7 @@ glfw = ["mirl_windowing_glfw"]
 ## Framework backend using the console
 console = ["mirl_windowing_console"]
 # keyboard_query = ["mirl_windowing_core/keyboard_query"]
-
 cursor_show_hotspot = ["mirl_windowing_core/cursor_show_hotspot"]
-
 image_support = ["dep:image"]
 
 [dependencies]
@@ -63,18 +57,15 @@ bitcode = { version = "0.6", optional = true, default-features = false, features
 # Codec
 compactly = { version = "0.1", optional = true }
 enum_ext = { version = "0.6", optional = true, default-features = false }
-
 image = { version = "0.25", optional = true, default-features = false }
 mirl_buffer = { version = "0.0.0-alpha" }
 mirl_derive = { version = "0.0.0-alpha", optional = true }
-
 # Normal
 mirl_extensions = { version = "0.0.0-alpha" }
 mirl_windowing_core = { version = "0.0.0-alpha" }
-serde = { version = "1", optional = true, default-features = false, features = [
+serde = { version = "1.0", optional = true, default-features = false, features = [
     "derive",
 ] }
-
 # Enum functionality
 strum = { version = "0.28", optional = true, default-features = false, features = [
     "derive",

@@ -1,12 +1,7 @@
 #[cfg(feature = "std")]
 #[cfg_attr(
     feature = "mirl_derive",
-    mirl_derive::derive_all(
-        serde = false,
-        compactly = false,
-        zerocopy = false,
-        bitcode = false
-    )
+    mirl_derive::derive_all(serde = false, compactly = false, zerocopy = false, bitcode = false)
 )]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 /// A ticker, regulate the timing of an application
@@ -30,10 +25,7 @@ impl Ticker {
     /// When fps it too high/negative to fit into [`std::time::Duration`]
     pub fn new(fps: f64) -> Option<Self> {
         Some(Self {
-            target_delta_time: std::time::Duration::try_from_secs_f64(
-                1.0 / fps,
-            )
-            .ok()?,
+            target_delta_time: std::time::Duration::try_from_secs_f64(1.0 / fps).ok()?,
             last_frame: std::time::Instant::now(),
             next_frame: std::time::Instant::now(),
             delta_time: std::time::Duration::new(0, 0),
@@ -72,8 +64,8 @@ impl Ticker {
     ) -> (T, T) {
         let seconds = self.delta_time.as_secs();
         let nanos = self.delta_time.subsec_nanos();
-        let delta = (T::from_value(seconds))
-            + (T::from_value(nanos)) / T::from_value(1_000_000_000_u32);
+        let delta =
+            (T::from_value(seconds)) + (T::from_value(nanos)) / T::from_value(1_000_000_000_u32);
 
         (delta.clone(), T::from_value(1u32) / delta)
     }

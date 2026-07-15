@@ -12,7 +12,16 @@ authors.workspace = true
 [features]
 default = ["std"]
 # Core
-std = []
+std = [
+    "bitcode?/std",
+    "mirl_buffer/std",
+    "mirl_extensions/std",
+    "mirl_windowing_core/std",
+    "serde?/std",
+    "strum?/std",
+    "wincode?/std",
+    "zerocopy?/std",
+]
 _checking = ["all", "cursor_show_hotspot"]
 all = [
     "glfw",
@@ -21,21 +30,73 @@ all = [
     "all_codecs",
     "all_enum_extensions",
     "image_support",
+    "mirl_buffer/all",
+    "mirl_extensions/all",
+    "mirl_windowing_core/all",
+    "mirl_windowing_console?/all",
+    "mirl_windowing_glfw?/all",
+    "mirl_windowing_minifb?/all",
 ]
 # Does nothing by itself. Needs another codec or enum flag to do something
-mirl_derive = ["dep:mirl_derive"]
+mirl_derive = [
+    "dep:mirl_derive",
+    "mirl_buffer/mirl_derive",
+    "mirl_windowing_core/mirl_derive",
+]
 # Compatibility with ffi
-c_compatible = ["mirl_derive"]
+c_compatible = [
+    "mirl_derive",
+    "mirl_buffer/c_compatible",
+    "mirl_extensions/c_compatible",
+    "mirl_windowing_core/c_compatible",
+    "mirl_windowing_console?/c_compatible",
+    "mirl_windowing_glfw?/c_compatible",
+    "mirl_windowing_minifb?/c_compatible",
+]
 # Enables all codecs
-all_codecs = ["serde", "bitcode", "wincode", "compactly", "zerocopy"]
+all_codecs = [
+    "serde",
+    "bitcode",
+    "wincode",
+    "compactly",
+    "zerocopy",
+    "mirl_buffer/all_codecs",
+    "mirl_windowing_core/all_codecs",
+]
 # All enum extensions
-all_enum_extensions = ["strum", "enum_ext"]
+all_enum_extensions = ["strum", "enum_ext", "mirl_windowing_core/all_enum_extensions"]
 # Codec stuff
-serde = ["dep:serde", "mirl_derive", "mirl_windowing_core/serde"]
-bitcode = ["dep:bitcode", "mirl_derive", "mirl_windowing_core/bitcode"]
-wincode = ["dep:wincode", "mirl_derive", "mirl_windowing_core/wincode"]
-compactly = ["dep:compactly", "mirl_derive", "mirl_windowing_core/compactly"]
-zerocopy = ["dep:zerocopy", "mirl_derive", "mirl_windowing_core/zerocopy"]
+serde = [
+    "dep:serde",
+    "mirl_derive",
+    "mirl_windowing_core/serde",
+    "bitcode?/serde",
+    "mirl_buffer/serde",
+]
+bitcode = [
+    "dep:bitcode",
+    "mirl_derive",
+    "mirl_windowing_core/bitcode",
+    "mirl_buffer/bitcode",
+]
+wincode = [
+    "dep:wincode",
+    "mirl_derive",
+    "mirl_windowing_core/wincode",
+    "mirl_buffer/wincode",
+]
+compactly = [
+    "dep:compactly",
+    "mirl_derive",
+    "mirl_windowing_core/compactly",
+    "mirl_buffer/compactly",
+]
+zerocopy = [
+    "dep:zerocopy",
+    "mirl_derive",
+    "mirl_windowing_core/zerocopy",
+    "mirl_buffer/zerocopy",
+]
 # Enum extensions
 strum = ["dep:strum", "mirl_derive", "mirl_windowing_core/strum"]
 enum_ext = ["dep:enum_ext", "mirl_derive", "mirl_windowing_core/enum_ext"]
@@ -43,11 +104,15 @@ enum_ext = ["dep:enum_ext", "mirl_derive", "mirl_windowing_core/enum_ext"]
 ## Framework backend using minifb
 minifb = ["mirl_windowing_minifb"]
 ## Framework backend using glfw
-glfw = ["mirl_windowing_glfw"]
+glfw = ["mirl_windowing_glfw", "mirl_extensions/glfw"]
 ## Framework backend using the console
 console = ["mirl_windowing_console"]
 # keyboard_query = ["mirl_windowing_core/keyboard_query"]
-cursor_show_hotspot = ["mirl_windowing_core/cursor_show_hotspot"]
+cursor_show_hotspot = [
+    "mirl_windowing_core/cursor_show_hotspot",
+    "mirl_windowing_glfw?/cursor_show_hotspot",
+    "mirl_windowing_minifb?/cursor_show_hotspot",
+]
 image_support = ["dep:image"]
 
 [dependencies]

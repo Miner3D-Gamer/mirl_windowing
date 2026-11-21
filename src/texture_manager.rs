@@ -23,7 +23,7 @@ pub struct TextureManager<const AUTOMATIC_CLEANUP: bool> {
     pub current_frame: u64,
 }
 
-#[cfg(feature = "std")]
+// #[cfg(feature = "std")]
 impl<const AUTOMATIC_CLEANUP: bool> TextureManager<AUTOMATIC_CLEANUP> {
     #[must_use]
     #[allow(clippy::new_without_default)]

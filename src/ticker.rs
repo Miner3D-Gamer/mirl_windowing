@@ -1,9 +1,5 @@
-#[cfg(feature = "std")]
-#[cfg_attr(
-    feature = "mirl_derive",
-    mirl_derive::derive_all(serde = false, compactly = false, zerocopy = false, bitcode = false)
-)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+
+#[mirl_macros::derive_all(serde = false, compactly = false, zerocopy = false, bitcode = false,partial_eq=non_const,clone=nonconst)]
 /// A ticker, regulate the timing of an application
 pub struct Ticker {
     /// 1/fps
@@ -16,7 +12,6 @@ pub struct Ticker {
     pub delta_time: std::time::Duration,
 }
 
-#[cfg(feature = "std")]
 impl Ticker {
     #[must_use]
     /// Create a new ticker, holds invalid data until ticked once

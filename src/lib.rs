@@ -2,8 +2,8 @@
 //!
 //! To get started, use either the `minifb`, `glfw`, or experimentally `console` flags
 #![feature(const_trait_impl)]
-#![cfg_attr(feature = "std", feature(const_ops))] // Used by ticker
-#![cfg_attr(feature = "std", feature(const_clone))] // Used by ticker
+#![feature(const_ops)] // Used by ticker
+#![feature(const_clone)] // Used by ticker
 
 /// Most 2d games have 60 tps while 3d games often have 20 tps
 pub mod ticker;
@@ -16,6 +16,9 @@ pub mod prelude;
 
 /// A simple texture manager to dynamically load/unload images
 pub mod texture_manager;
+
+/// Constants
+pub mod constants;
 
 // Windows
 #[cfg(not(target_arch = "wasm32"))]
